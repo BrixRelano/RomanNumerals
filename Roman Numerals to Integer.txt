@@ -1,0 +1,138 @@
+public class Solution {
+    
+    void main(){
+        string s = Console.ReadLine();
+        int output = RomanToInt(s);
+        Console.WriteLine(output);
+    }
+    
+    public int RomanToInt(string s) {
+        string input = s;
+        int number = 0;
+        //1437 = MCDXXXVII
+        
+        // for loop to access every letter        
+        for (int j = 0; j < input.Length; j++){
+            
+            switch (input[j]){
+                // Case I: 1 - 4
+                //         4 before V
+                //         9 before X
+                case 'I':{
+                    // checking subtraction instance
+                    if ((j+1) < input.Length){
+                        if (input[j+1] == 'V'){
+                            number += 4;
+                            // checking end of roman numeral for subtraction instance
+                            if (j - input.Length == 2){
+                                j = input.Length;
+                            }
+                            // subtraction instance: skipping next letter
+                            j++;
+                            break;
+                        }
+                    
+                    // checking subtraction instance
+                        else if (input[j+1] == 'X'){
+                            number += 9;
+                            // checking end of roman numeral for subtraction instance
+                            if (j - input.Length == 2){
+                                j = input.Length;
+                            }
+                            // subtraction instance: skipping next letter
+                            j++;
+                            break;
+                        }
+                    }
+                    number += 1;
+                    break;
+                }
+                // Case V: 5    
+                case 'V':{
+                    number += 5;
+                    break;
+                }
+                // Case X: 10 - 40
+                //         50 before L
+                //         90 before C
+                case 'X':{
+                    // checking subtraction instance
+                    if ((j+1) < input.Length){
+                        if (input[j+1] == 'L'){
+                            number += 40;
+                            // checking end of roman numeral for subtraction instance
+                            if (j - input.Length == 2){
+                                j = input.Length;
+                            }
+                            // subtraction instance: skipping next letter
+                            j++;
+                            break;
+                        }
+                        // checking subtraction instance
+                        else if (input[j+1] == 'C'){
+                            number += 90;
+                            // checking end of roman numeral for subtraction instance
+                            if (j - input.Length == 2){
+                                j = input.Length;
+                            }
+                            // subtraction instance: skipping next letter
+                            j++;
+                            break;
+                        }
+                    }
+                    number += 10;
+                    break;
+                }
+                // Case L: 50    
+                case 'L':{
+                    number += 50;
+                    break;
+                }
+                // Case C: 100 - 400
+                //         400 before D
+                //         900 before M    
+                case 'C':{
+                    // checking subtraction instance
+                    if ((j+1) < input.Length){
+                        if (input[j+1] == 'D'){
+                            number += 400;
+                            if (j - input.Length == 2){
+                                j = input.Length;
+                            }
+                            // subtraction instance: skipping next letter
+                            j++;
+                            break;
+                        }
+                        // checking subtraction instance
+                        else if (input[j+1] == 'M'){
+                            number += 900;
+                            if (j - input.Length == 2){
+                                j = input.Length;
+                            }
+                            // subtraction instance: skipping next letter
+                            j++;
+                            break;
+                        }
+                    }
+                    number += 100;
+                    break;
+                }
+                // Case D: 500    
+                case 'D':{
+                    number += 500;
+                    break;
+                }
+                // Case M: 1000 - 4000    
+                case 'M':{
+                    number += 1000;
+                    break;
+                } 
+                  
+            }
+            
+        }
+       return number; 
+    }   
+        
+}
+    
